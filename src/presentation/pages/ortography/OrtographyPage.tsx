@@ -4,11 +4,15 @@ import {
     TypingLoaders,
     UserMessage,
     TextMessageBox,
+    GptOrtographyMessage,
 } from "../../components";
+import { ortographyUseCase } from "../../../core/use-cases";
+import { OrtographyResponse } from "../../../interfaces";
 
 interface Message {
     text: string;
     isGpt: boolean;
+    info?: OrtographyResponse;
 }
 
 export const OrtographyPage = () => {
@@ -19,7 +23,19 @@ export const OrtographyPage = () => {
         setIsLoading(true);
         setMessages((prev) => [...prev, { text, isGpt: false }]);
 
-        //TODO UseCase
+        const data = await ortographyUseCase(text);
+
+        if (!data.ok) {
+            setMessages((prev) => [
+                ...prev,
+                { text: "No se pudo realizar la corrección", isGpt: true },
+            ]);
+        } else {
+            setMessages((prev) => [
+                ...prev,
+                { text: data.message, isGpt: true, info: { ...data } },
+            ]);
+        }
 
         setIsLoading(false);
 
@@ -33,7 +49,10 @@ export const OrtographyPage = () => {
 
                     {messages.map((message, index) =>
                         message.isGpt ? (
-                            <GptMessage key={index} text={message.text} />
+                            <GptOrtographyMessage
+                                key={index}
+                                {...message.info!}
+                            />
                         ) : (
                             <UserMessage key={index} text={message.text} />
                         )
@@ -52,7 +71,6 @@ export const OrtographyPage = () => {
                 placeholder="Escribe tu texto aquí"
                 disableCorrections
             />
-            
         </div>
     );
 };
