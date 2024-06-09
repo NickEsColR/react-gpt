@@ -1,30 +1,70 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# React GPT
 
-Currently, two official plugins are available:
+Welcome to the React GPT, a web application chat based to use different features available with OpenAI API like, bot assistant, image generation, text correction, text translation, etc.
+ 
+This is the **frontend** of the application. Remember to run de backend first, the backend repository can be found [here](https://github.com/NickEsColR/nest-gpt)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**This application was develop to use by spanish speakers.**
+## Environment Variables
 
-## Expanding the ESLint configuration
+To run this project, you will need to add the following environment variables to your .env file
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+`VITE_GPT_API`
+`VITE_ASSISTANT_API`
 
-- Configure the top-level `parserOptions` property like this:
+An environment template is provided, you just need to rename it from ".env.template" to ".env" and paste your values
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Features
+
+- Chatbot assistant
+- convert audio to text
+- Convert text to audio
+- Generate images
+- ortography correction
+- translate to other languages
+- identify pros and cons from asking topic
+
+
+## Run Locally
+
+**Remember to run this first**
+
+Clone the project
+
+```bash
+  git clone https://github.com/NickEsColR/react-gpt.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Go to the project directory
+
+```bash
+  cd react-gpt
+```
+
+Install dependencies
+
+```bash
+  npm Install
+```
+
+Start the application
+
+```bash
+  npm run dev
+```
+
+
+## Tech Stack
+
+**Client:** 
+
+- React 
+- React Router
+- React Markdown
+
+**Server:** 
+
+- NestJS
+- OpenAI
+
